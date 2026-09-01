@@ -157,6 +157,57 @@
 .pill-orange { border-color: #D97B20; color: #D97B20; background: #FDF3E7; }
 .pill-red    { border-color: #C94040; color: #C94040; background: #FDECEC; }
 
+/* CSV table */
+.csv-table {
+  width: 100%;
+  max-width: 620px;
+  border-collapse: collapse;
+  font-size: .9rem;
+  margin: 16px 0 18px;
+  overflow-x: auto;
+  display: block;
+}
+.csv-table th {
+  background: var(--indigo-pale);
+  color: var(--indigo);
+  font-weight: 700;
+  text-align: left;
+  padding: 9px 14px;
+  border-bottom: 2px solid var(--border);
+}
+.csv-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--ink-muted);
+  vertical-align: top;
+}
+.csv-table tr:last-child td { border-bottom: none; }
+.csv-table code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: .87rem;
+  color: var(--indigo);
+}
+
+/* CSV download link */
+.csv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: .92rem;
+  color: var(--indigo);
+  border: 1.5px solid var(--indigo);
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin-top: 6px;
+  transition: background .12s;
+}
+.csv-download:hover { background: var(--indigo-pale); text-decoration: none; }
+
 @media (max-width: 700px) {
   .help-layout { grid-template-columns: 1fr; }
   .help-sidebar { display: none; }
@@ -302,7 +353,26 @@
         <div class="tip"><strong>Tip:</strong> If you just deleted all your data and iCloud sync is on, wait 30–60 seconds before importing. iCloud may still be processing the deletions, and importing too quickly can cause a conflict.</div>
 
         <h3>CSV import</h3>
-        <p>You can also import contacts from a CSV file with columns: <code>Last, First, Date, knowYear, Event</code>. This is useful for bulk-adding birthdays from a spreadsheet.</p>
+        <p>You can bulk-import contacts from a spreadsheet. Go to <strong>Settings → Import from CSV</strong> and choose your file. The file must be a plain CSV (comma-separated) with these five columns in order:</p>
+
+        <table class="csv-table">
+          <thead>
+            <tr><th>Column</th><th>Description</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>Last</code></td><td>Last name</td><td>Shaw</td></tr>
+            <tr><td><code>First</code></td><td>First name</td><td>Alexis</td></tr>
+            <tr><td><code>Date</code></td><td>Birthday in MM/DD/YYYY format</td><td>08/30/1971</td></tr>
+            <tr><td><code>knowYear</code></td><td><code>1</code> if the birth year is known, <code>0</code> if only the month and day are known</td><td>1</td></tr>
+            <tr><td><code>Event</code></td><td>Type of date — use <code>Birthday</code></td><td>Birthday</td></tr>
+          </tbody>
+        </table>
+
+        <p>The first row must be the header exactly as shown above. Each subsequent row adds one contact. If a contact with the same name already exists, the import skips that row rather than creating a duplicate.</p>
+
+        <div class="tip"><strong>Tip:</strong> Export your contact list from any spreadsheet app (Numbers, Excel, Google Sheets) as a <em>.csv</em> file, reorder the columns to match the format above, and you can import hundreds of birthdays in seconds.</div>
+
+        <p><a href="RememberIt_Sample.csv" class="csv-download" download>⬇ Download a sample CSV file</a></p>
       </section>
 
       <!-- Notifications -->
