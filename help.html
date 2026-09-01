@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help — RememberIt</title>
+<meta name="description" content="Learn how to use RememberIt — reminders, contacts, the Remember tab, maintenance tracking, and backup.">
+<link rel="stylesheet" href="style.css">
+<style>
+.help-hero {
+  padding: 60px 0 48px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 56px;
+}
+.help-hero h1 { font-size: clamp(2rem, 4vw, 2.8rem); margin-top: .3em; }
+.help-hero p  { font-size: 1.05rem; color: var(--ink-muted); margin-top: .7em; }
+
+.help-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Sidebar */
+.help-sidebar {
+  position: sticky;
+  top: 80px;
+}
+.help-sidebar nav { display: flex; flex-direction: column; gap: 4px; }
+.help-sidebar a {
+  color: var(--ink-muted);
+  font-size: .92rem;
+  font-weight: 500;
+  padding: 7px 12px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  transition: background .12s, color .12s;
+}
+.help-sidebar a:hover,
+.help-sidebar a.active {
+  background: var(--indigo-pale);
+  color: var(--indigo);
+}
+.help-sidebar .section-group {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding: 16px 12px 4px;
+}
+
+/* Content */
+.help-section {
+  margin-bottom: 64px;
+  scroll-margin-top: 80px;
+}
+.help-section h2 {
+  font-size: 1.55rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 28px;
+}
+.help-section h2 .tab-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--indigo-pale);
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.amber-bg { background: var(--amber-light) !important; }
+
+.help-section h3 {
+  font-size: 1.08rem;
+  margin: 24px 0 8px;
+  color: var(--ink);
+}
+.help-section p {
+  font-size: .96rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+/* Q&A */
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.faq-item summary {
+  padding: 15px 20px;
+  font-weight: 600;
+  font-size: .97rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  color: var(--ink);
+  user-select: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-size: 1.2rem; color: var(--indigo); transition: transform .2s; }
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item[open] summary { border-bottom: 1px solid var(--border); }
+.faq-body {
+  padding: 16px 20px;
+  font-size: .93rem;
+  color: var(--ink-muted);
+  line-height: 1.65;
+  background: var(--ground);
+}
+.faq-body p + p { margin-top: .7em; }
+
+/* Tip box */
+.tip {
+  background: var(--indigo-pale);
+  border-left: 3px solid var(--indigo);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: .93rem;
+  color: var(--ink);
+}
+.tip strong { color: var(--indigo); }
+
+/* Action pills */
+.actions-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+.action-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: .85rem;
+  font-weight: 600;
+  border: 1.5px solid;
+}
+.pill-green  { border-color: #2E9E4F; color: #2E9E4F; background: #EBF7EF; }
+.pill-orange { border-color: #D97B20; color: #D97B20; background: #FDF3E7; }
+.pill-red    { border-color: #C94040; color: #C94040; background: #FDECEC; }
+
+@media (max-width: 700px) {
+  .help-layout { grid-template-columns: 1fr; }
+  .help-sidebar { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Site navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="nav-logo-icon">🧠</span>
+      RememberIt
+    </a>
+    <ul class="nav-links">
+      <li><a href="help.html" aria-current="page">Help</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="support.html">Support</a></li>
+      <li><a href="index.html#download" class="nav-cta">Download</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<div class="page-content">
+
+  <div class="help-hero">
+    <p class="eyebrow">Documentation</p>
+    <h1>How to use RememberIt</h1>
+    <p>Everything you need to know about reminders, contacts, the Remember tab, maintenance tracking, and backing up your data.</p>
+  </div>
+
+  <div class="help-layout">
+
+    <!-- Sidebar -->
+    <aside class="help-sidebar">
+      <nav aria-label="Help sections">
+        <div class="section-group">Tabs</div>
+        <a href="#reminders">🔔 Reminders</a>
+        <a href="#contacts">👥 Contacts</a>
+        <a href="#remember">🧠 Remember</a>
+        <a href="#maintenance">🔧 Maintenance</a>
+        <div class="section-group">Settings</div>
+        <a href="#backup">💾 Backup &amp; Restore</a>
+        <a href="#notifications">🔕 Notifications</a>
+        <a href="#faq">❓ FAQ</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <div class="help-content">
+
+      <!-- Reminders -->
+      <section class="help-section" id="reminders">
+        <h2><span class="tab-icon">🔔</span> Reminders</h2>
+
+        <p>The Reminders tab is your daily dashboard. It shows two groups: reminders that are due now (or overdue), and reminders coming up within your look-ahead window (default: 7 days).</p>
+
+        <h3>Swipe actions</h3>
+        <p>Swipe left on any reminder to reveal three actions:</p>
+        <div class="actions-row">
+          <span class="action-pill pill-green">✓ Done / Done for Year</span>
+          <span class="action-pill pill-red">🗑 Delete</span>
+        </div>
+        <p><strong>Done for Year</strong> appears on annual reminders (birthdays, anniversaries). It advances the reminder to the same date next year. <strong>Delete</strong> permanently removes the reminder.</p>
+
+        <div class="tip"><strong>Tip:</strong> The number badge on the Reminders tab exactly matches the count you see on screen. It clears automatically as you dismiss reminders.</div>
+
+        <h3>Filtering</h3>
+        <p>Tap the filter icon (funnel) in the top-right corner to show only Birthdays, Anniversaries, or Custom reminders. The icon fills in solid when a filter is active.</p>
+
+        <h3>Annual reminders</h3>
+        <p>Birthday and anniversary reminders are created automatically when you add those dates to a contact. They repeat every year — dismissing one moves it forward 12 months, not off permanently.</p>
+      </section>
+
+      <!-- Contacts -->
+      <section class="help-section" id="contacts">
+        <h2><span class="tab-icon">👥</span> Contacts</h2>
+
+        <p>The Contacts tab is a searchable list of everyone you're tracking. Tap any contact to see their full detail: event log, family members, birthday, anniversary, and custom fields.</p>
+
+        <h3>Adding a contact</h3>
+        <p>Tap the <strong>+</strong> button (top right) to add a new contact. You can set a name, phone, email, birthday, anniversary, and notes. Enable <em>Birthday Reminder</em> to automatically create an annual tickler.</p>
+
+        <h3>Logging events</h3>
+        <p>Inside a contact, tap <strong>Log an Event</strong> to record an interaction — a lunch, a call, a note about something they mentioned. You can optionally turn any event into a reminder.</p>
+
+        <h3>Family members</h3>
+        <p>Add family members under a contact to track their birthdays and relationship. If a family member is also in your contacts list, you can link them — their birthday reminder will appear only once.</p>
+
+        <h3>Red badge on a contact row</h3>
+        <p>A red number next to a contact's name means they have one or more reminders currently due. Tap the contact to see which ones.</p>
+      </section>
+
+      <!-- Remember -->
+      <section class="help-section" id="remember">
+        <h2><span class="tab-icon amber-bg">🧠</span> Remember</h2>
+
+        <p>The Remember tab is for memorizing names — not tracking reminders. Use it when you've met a group of people and want to be able to put names to faces later.</p>
+
+        <h3>Groups</h3>
+        <p>Organize people into groups: <em>Conference attendees</em>, <em>Book club</em>, <em>Wedding guests</em>. Tap a group to see everyone in it. Swipe left on a group to edit, archive, or delete it.</p>
+
+        <h3>Archiving groups</h3>
+        <p>When a group is no longer active (like <em>Respite 2025</em>), swipe left and tap <strong>Archive</strong>. Archived groups are hidden but not deleted — tap <em>Archived (N)</em> at the bottom of the list to reveal them, then swipe to Unarchive.</p>
+
+        <h3>Hints</h3>
+        <p>Each person can have a hint — a short phrase that helps you remember them ("met at the Smiths' party", "drives a red truck"). The hint appears below their name and is searchable.</p>
+
+        <div class="tip"><strong>Tip:</strong> Use the search bar at the top of the Remember tab to find anyone across all groups instantly.</div>
+      </section>
+
+      <!-- Maintenance -->
+      <section class="help-section" id="maintenance">
+        <h2><span class="tab-icon amber-bg">🔧</span> Maintenance</h2>
+
+        <p>Track service history and upcoming maintenance for your home, vehicles, appliances, or anything that needs periodic attention.</p>
+
+        <h3>Categories and items</h3>
+        <p>Create categories (e.g., <em>Car</em>, <em>House</em>, <em>Pet</em>) and add items within them (<em>Honda CR-V</em>, <em>HVAC system</em>, <em>Rocky</em>). Each item has its own service log.</p>
+
+        <h3>Service entries</h3>
+        <p>Tap an item to log a service entry — what was done, the date, the cost, and any notes. Enable <em>Set a reminder</em> on an entry to get notified when it's due again.</p>
+
+        <h3>Reminders</h3>
+        <p>Maintenance reminders appear on the Reminders tab alongside contact reminders. Swipe to dismiss or snooze them the same way.</p>
+      </section>
+
+      <!-- Backup -->
+      <section class="help-section" id="backup">
+        <h2><span class="tab-icon">💾</span> Backup &amp; Restore</h2>
+
+        <p>Your data syncs automatically via iCloud, but it's good practice to keep a local backup too.</p>
+
+        <h3>Exporting a backup</h3>
+        <p>Go to <strong>Settings → Export Backup</strong>. This creates a JSON file you can save to Files, Dropbox, or email to yourself. The file includes all contacts, maintenance records, and Remember groups.</p>
+
+        <h3>Importing a backup</h3>
+        <p>Go to <strong>Settings → Import Backup</strong> and choose your JSON file. Import <em>merges</em> — it adds new records without deleting anything that's already there.</p>
+
+        <div class="tip"><strong>Tip:</strong> If you just deleted all your data and iCloud sync is on, wait 30–60 seconds before importing. iCloud may still be processing the deletions, and importing too quickly can cause a conflict.</div>
+
+        <h3>CSV import</h3>
+        <p>You can also import contacts from a CSV file with columns: <code>Last, First, Date, knowYear, Event</code>. This is useful for bulk-adding birthdays from a spreadsheet.</p>
+      </section>
+
+      <!-- Notifications -->
+      <section class="help-section" id="notifications">
+        <h2><span class="tab-icon">🔕</span> Notifications</h2>
+
+        <p>Go to <strong>Settings → Notifications</strong> to set the time you want daily reminders delivered. Changing this reschedules all pending notifications.</p>
+        <p>If you declined notification permission when first asked, go to <strong>iPhone Settings → RememberIt → Notifications</strong> to turn them on.</p>
+      </section>
+
+      <!-- FAQ -->
+      <section class="help-section" id="faq">
+        <h2><span class="tab-icon">❓</span> Frequently Asked Questions</h2>
+
+        <details class="faq-item">
+          <summary>Why is a birthday showing on the wrong day?</summary>
+          <div class="faq-body">
+            <p>Birthdays are stored as calendar dates (not times). If you entered a birthday while in one time zone and now view it in a different one, the display logic automatically accounts for this using UTC-based date math — so the date should always show the day you entered regardless of where you are.</p>
+            <p>If you see a date that's off by one day, check whether the birthday was set correctly in the contact's detail view.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Why does the same birthday appear twice in Reminders?</summary>
+          <div class="faq-body">
+            <p>This can happen if a person is both a direct contact <em>and</em> listed as a family member on another contact with their birthday tickler enabled. RememberIt automatically suppresses the family-member copy — only the direct contact's reminder shows. If you're still seeing duplicates, check that the family member is properly <em>linked</em> to their contact (tap the family member row to link them).</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I turn off a birthday reminder for one person?</summary>
+          <div class="faq-body">
+            <p>Open the contact, tap the edit button (⋯ menu → Edit Contact), and turn off the <em>Birthday Reminder</em> toggle. This removes the annual tickler without deleting the birthday date itself.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Does RememberIt work without iCloud?</summary>
+          <div class="faq-body">
+            <p>Yes — all your data is saved on your device even when iCloud is off. You just won't get sync across other devices. Export a backup regularly if you're not using iCloud, so you have a copy in case you switch phones.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>I deleted all my data. How do I restore from backup?</summary>
+          <div class="faq-body">
+            <p>If iCloud sync is enabled, wait about 60 seconds after deleting before importing — iCloud needs time to process the deletions. Then go to <strong>Settings → Import Backup</strong> and choose your backup file. If the import seems to do nothing, try enabling Airplane Mode first, import, then turn Airplane Mode off.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Can I use RememberIt on my iPad or Mac?</summary>
+          <div class="faq-body">
+            <p>RememberIt is built for iPhone and runs on iPad in iPhone-compatibility mode. A native iPad version is not available yet. iCloud sync means your data is always up to date when you switch between devices.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>How do I report a bug or request a feature?</summary>
+          <div class="faq-body">
+            <p>Visit the <a href="support.html">Support page</a> and send an email. Include which version of the app you're using (visible in Settings → About) and a description of what you expected vs. what happened.</p>
+          </div>
+        </details>
+
+      </section>
+
+    </div><!-- /help-content -->
+  </div><!-- /help-layout -->
+
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>© 2026 RememberIt · Built by Bruce Barclay</span>
+    <ul class="footer-links">
+      <li><a href="help.html">Help</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
